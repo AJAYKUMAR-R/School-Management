@@ -18,9 +18,9 @@ namespace BusinessLayer.BL_layer
             this.dlPagination = dlPagination;
         }
 
-        public  IEnumerable<Student> GetStudentsPerPage(int page, int Pagesize)
+        public  IEnumerable<Student> GetStudentsPerPage(SearchParameter parameter)
         {
-            var students =  dlPagination.GetStudentsPerPageFromDb(page, Pagesize);
+            var students =  dlPagination.GetStudentsPerPageFromDb(parameter);
             return students;
         }
 

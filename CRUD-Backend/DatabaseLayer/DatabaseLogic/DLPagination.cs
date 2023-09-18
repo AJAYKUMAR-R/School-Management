@@ -5,6 +5,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,17 +20,33 @@ namespace DatabaseLayer.DatabaseLogic
             this._dbcontext = _dbcontext;
         }
 
-        public  IEnumerable<Student> GetStudentsPerPageFromDb(int page, int pageSize)
+        public  IEnumerable<Student> GetStudentsPerPageFromDb(SearchParameter parameter)
         {
+            //seting the values
+
+
             SqlParameter[] sqlParameter = new SqlParameter[]{
-               new SqlParameter ("@pagenumber",page),
-               new SqlParameter ("@pageSize",pageSize)
+               new SqlParameter ("@pagenumber",parameter.Page),
+               new SqlParameter ("@pageSize",parameter.PageSize),
+               new SqlParameter ("@DropdownColumn",parameter.DropdownColumn?.ToUpper()),
+               new SqlParameter ("@DropdownColumnValue",parameter.DropdownColumnValue?.ToUpper()),
+               new SqlParameter ("@SortDirection",parameter.SortDirection?.ToUpper()),
+               new SqlParameter ("@SortColumn",parameter.SortDirection?.ToUpper())
+            };
+
+            var outputParameter = new SqlParameter
+            {
+                ParameterName = "@OutputParameter",
+                SqlDbType = SqlDbType.Int,
+                Direction = ParameterDirection.Output
             };
 
             try
             {
-                var students = _dbcontext.Students.FromSqlRaw("EXEC [DBO].[Getstudents] @pagenumber,@pageSize", sqlParameter)
-                    .AsEnumerable();
+                var students = _dbcontext.Students.FromSqlRaw("EXEC [DBO].[RECORDSPERPAGE] @pagenumber,@pageSize,@DropdownColumn,@DropdownColumnValue,@SortDirection,@SortColumn"
+                    , sqlParameter)
+                    .ToList();
+                var tcount = (int)outputParameter.Value;
                 return students;
 
             }

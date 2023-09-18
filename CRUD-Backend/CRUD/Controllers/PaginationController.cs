@@ -2,7 +2,9 @@
 using CRUD.RespositoryLayer;
 using CRUD.Utils;
 using DatabaseLayer.DatabaseLogic.Models;
+using DatabaseLayer.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Reflection.Metadata;
 
 namespace CRUD.Controllers
 {
@@ -16,10 +18,10 @@ namespace CRUD.Controllers
             this.bl = bl;
         }
 
-        [HttpGet("{page}/{pageSize}")]
-        public Responses GetStudents(int page, int pageSize)
+        [HttpPost]
+        public Responses GetStudents([FromBody] SearchParameter value)
         {
-            var Student = bl.GetStudentsPerPage(page, pageSize);
+            var Student = bl.GetStudentsPerPage(value);
             if (Student is not null)
             {
                 return StatusHandler.ProcessHttpStatusCode(Student, "Data Succesfully Fetched from the Db");

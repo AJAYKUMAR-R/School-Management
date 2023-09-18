@@ -10,7 +10,7 @@ namespace DatabaseLayer.DatabaseAbstraction
 {
     public interface IDLPagination
     {
-        public IEnumerable<Student> GetStudentsPerPageFromDb(int page, int pageSize);
+        public IEnumerable<Student> GetStudentsPerPageFromDb(SearchParameter parameter);
         public Task<int> GetTotalCountFromDb();
     }
 }
