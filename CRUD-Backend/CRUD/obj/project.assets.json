@@ -2935,11 +2935,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\angularproject\\Services\\New\\Angular_.NET_project\\CRUD-Backend\\CRUD\\CRUD.csproj",
+      "projectUniqueName": "D:\\New Project\\Projects\\School-Management\\CRUD-Backend\\CRUD\\CRUD.csproj",
       "projectName": "CRUD",
-      "projectPath": "D:\\angularproject\\Services\\New\\Angular_.NET_project\\CRUD-Backend\\CRUD\\CRUD.csproj",
+      "projectPath": "D:\\New Project\\Projects\\School-Management\\CRUD-Backend\\CRUD\\CRUD.csproj",
       "packagesPath": "C:\\Users\\ajaykumar.r\\.nuget\\packages\\",
-      "outputPath": "D:\\angularproject\\Services\\New\\Angular_.NET_project\\CRUD-Backend\\CRUD\\obj\\",
+      "outputPath": "D:\\New Project\\Projects\\School-Management\\CRUD-Backend\\CRUD\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -2961,11 +2961,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\angularproject\\Services\\New\\Angular_.NET_project\\CRUD-Backend\\BusinessLayer\\BusinessLayer.csproj": {
-              "projectPath": "D:\\angularproject\\Services\\New\\Angular_.NET_project\\CRUD-Backend\\BusinessLayer\\BusinessLayer.csproj"
+            "D:\\New Project\\Projects\\School-Management\\CRUD-Backend\\BusinessLayer\\BusinessLayer.csproj": {
+              "projectPath": "D:\\New Project\\Projects\\School-Management\\CRUD-Backend\\BusinessLayer\\BusinessLayer.csproj"
             },
-            "D:\\angularproject\\Services\\New\\Angular_.NET_project\\CRUD-Backend\\DatabaseLayer\\DatabaseLayer.csproj": {
-              "projectPath": "D:\\angularproject\\Services\\New\\Angular_.NET_project\\CRUD-Backend\\DatabaseLayer\\DatabaseLayer.csproj"
+            "D:\\New Project\\Projects\\School-Management\\CRUD-Backend\\DatabaseLayer\\DatabaseLayer.csproj": {
+              "projectPath": "D:\\New Project\\Projects\\School-Management\\CRUD-Backend\\DatabaseLayer\\DatabaseLayer.csproj"
             }
           }
         }

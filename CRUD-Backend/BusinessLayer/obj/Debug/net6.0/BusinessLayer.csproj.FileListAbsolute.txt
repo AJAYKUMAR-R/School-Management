@@ -28,3 +28,18 @@ D:\angularproject\Services\New\Angular_.NET_project\CRUD-Backend\BusinessLayer\o
 D:\angularproject\Services\New\Angular_.NET_project\CRUD-Backend\BusinessLayer\obj\Debug\net6.0\refint\BusinessLayer.dll
 D:\angularproject\Services\New\Angular_.NET_project\CRUD-Backend\BusinessLayer\obj\Debug\net6.0\BusinessLayer.pdb
 D:\angularproject\Services\New\Angular_.NET_project\CRUD-Backend\BusinessLayer\obj\Debug\net6.0\ref\BusinessLayer.dll
+D:\New Project\Projects\School-Management\CRUD-Backend\BusinessLayer\bin\Debug\net6.0\BusinessLayer.deps.json
+D:\New Project\Projects\School-Management\CRUD-Backend\BusinessLayer\bin\Debug\net6.0\BusinessLayer.dll
+D:\New Project\Projects\School-Management\CRUD-Backend\BusinessLayer\bin\Debug\net6.0\BusinessLayer.pdb
+D:\New Project\Projects\School-Management\CRUD-Backend\BusinessLayer\bin\Debug\net6.0\DatabaseLayer.dll
+D:\New Project\Projects\School-Management\CRUD-Backend\BusinessLayer\bin\Debug\net6.0\DatabaseLayer.pdb
+D:\New Project\Projects\School-Management\CRUD-Backend\BusinessLayer\obj\Debug\net6.0\BusinessLayer.csproj.AssemblyReference.cache
+D:\New Project\Projects\School-Management\CRUD-Backend\BusinessLayer\obj\Debug\net6.0\BusinessLayer.GeneratedMSBuildEditorConfig.editorconfig
+D:\New Project\Projects\School-Management\CRUD-Backend\BusinessLayer\obj\Debug\net6.0\BusinessLayer.AssemblyInfoInputs.cache
+D:\New Project\Projects\School-Management\CRUD-Backend\BusinessLayer\obj\Debug\net6.0\BusinessLayer.AssemblyInfo.cs
+D:\New Project\Projects\School-Management\CRUD-Backend\BusinessLayer\obj\Debug\net6.0\BusinessLayer.csproj.CoreCompileInputs.cache
+D:\New Project\Projects\School-Management\CRUD-Backend\BusinessLayer\obj\Debug\net6.0\BusinessLayer.csproj.CopyComplete
+D:\New Project\Projects\School-Management\CRUD-Backend\BusinessLayer\obj\Debug\net6.0\BusinessLayer.dll
+D:\New Project\Projects\School-Management\CRUD-Backend\BusinessLayer\obj\Debug\net6.0\refint\BusinessLayer.dll
+D:\New Project\Projects\School-Management\CRUD-Backend\BusinessLayer\obj\Debug\net6.0\BusinessLayer.pdb
+D:\New Project\Projects\School-Management\CRUD-Backend\BusinessLayer\obj\Debug\net6.0\ref\BusinessLayer.dll
