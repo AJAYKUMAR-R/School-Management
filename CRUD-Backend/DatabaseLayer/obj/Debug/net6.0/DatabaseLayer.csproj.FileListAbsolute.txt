@@ -26,3 +26,17 @@ D:\angularproject\Services\New\Angular_.NET_project\CRUD-Backend\DatabaseLayer\o
 D:\angularproject\Services\New\Angular_.NET_project\CRUD-Backend\DatabaseLayer\obj\Debug\net6.0\DatabaseLayer.pdb
 D:\angularproject\Services\New\Angular_.NET_project\CRUD-Backend\DatabaseLayer\obj\Debug\net6.0\DatabaseLayer.genruntimeconfig.cache
 D:\angularproject\Services\New\Angular_.NET_project\CRUD-Backend\DatabaseLayer\obj\Debug\net6.0\ref\DatabaseLayer.dll
+D:\New Project\Projects\School-Management\CRUD-Backend\DatabaseLayer\bin\Debug\net6.0\DatabaseLayer.deps.json
+D:\New Project\Projects\School-Management\CRUD-Backend\DatabaseLayer\bin\Debug\net6.0\DatabaseLayer.runtimeconfig.json
+D:\New Project\Projects\School-Management\CRUD-Backend\DatabaseLayer\bin\Debug\net6.0\DatabaseLayer.dll
+D:\New Project\Projects\School-Management\CRUD-Backend\DatabaseLayer\bin\Debug\net6.0\DatabaseLayer.pdb
+D:\New Project\Projects\School-Management\CRUD-Backend\DatabaseLayer\obj\Debug\net6.0\DatabaseLayer.csproj.AssemblyReference.cache
+D:\New Project\Projects\School-Management\CRUD-Backend\DatabaseLayer\obj\Debug\net6.0\DatabaseLayer.GeneratedMSBuildEditorConfig.editorconfig
+D:\New Project\Projects\School-Management\CRUD-Backend\DatabaseLayer\obj\Debug\net6.0\DatabaseLayer.AssemblyInfoInputs.cache
+D:\New Project\Projects\School-Management\CRUD-Backend\DatabaseLayer\obj\Debug\net6.0\DatabaseLayer.AssemblyInfo.cs
+D:\New Project\Projects\School-Management\CRUD-Backend\DatabaseLayer\obj\Debug\net6.0\DatabaseLayer.csproj.CoreCompileInputs.cache
+D:\New Project\Projects\School-Management\CRUD-Backend\DatabaseLayer\obj\Debug\net6.0\DatabaseLayer.dll
+D:\New Project\Projects\School-Management\CRUD-Backend\DatabaseLayer\obj\Debug\net6.0\refint\DatabaseLayer.dll
+D:\New Project\Projects\School-Management\CRUD-Backend\DatabaseLayer\obj\Debug\net6.0\DatabaseLayer.pdb
+D:\New Project\Projects\School-Management\CRUD-Backend\DatabaseLayer\obj\Debug\net6.0\DatabaseLayer.genruntimeconfig.cache
+D:\New Project\Projects\School-Management\CRUD-Backend\DatabaseLayer\obj\Debug\net6.0\ref\DatabaseLayer.dll
