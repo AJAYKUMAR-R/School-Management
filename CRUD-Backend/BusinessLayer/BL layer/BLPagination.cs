@@ -27,7 +27,7 @@ namespace BusinessLayer.BL_layer
             var students =  dlPagination.GetStudentsPerPageFromDb(parameter);
             int count = dlPagination.GetTotalCountFromDb(parameter);
             PaginationResult paginationResult= new PaginationResult();  
-            if(students.Count() > 0)
+            if(students?.Count() > 0)
             {
                 paginationResult.Result = students;
                 paginationResult.TotalCount = count;
