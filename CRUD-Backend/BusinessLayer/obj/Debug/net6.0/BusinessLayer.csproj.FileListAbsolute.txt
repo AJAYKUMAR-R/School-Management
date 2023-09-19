@@ -33,3 +33,13 @@ C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\BusinessLayer\o
 C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\BusinessLayer\obj\Debug\net6.0\BusinessLayer.AssemblyInfoInputs.cache
 C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\BusinessLayer\obj\Debug\net6.0\BusinessLayer.AssemblyInfo.cs
 C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\BusinessLayer\obj\Debug\net6.0\BusinessLayer.csproj.CoreCompileInputs.cache
+C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\BusinessLayer\bin\Debug\net6.0\BusinessLayer.deps.json
+C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\BusinessLayer\bin\Debug\net6.0\BusinessLayer.dll
+C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\BusinessLayer\bin\Debug\net6.0\BusinessLayer.pdb
+C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\BusinessLayer\bin\Debug\net6.0\DatabaseLayer.dll
+C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\BusinessLayer\bin\Debug\net6.0\DatabaseLayer.pdb
+C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\BusinessLayer\obj\Debug\net6.0\BusinessLayer.csproj.CopyComplete
+C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\BusinessLayer\obj\Debug\net6.0\BusinessLayer.dll
+C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\BusinessLayer\obj\Debug\net6.0\refint\BusinessLayer.dll
+C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\BusinessLayer\obj\Debug\net6.0\BusinessLayer.pdb
+C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\BusinessLayer\obj\Debug\net6.0\ref\BusinessLayer.dll

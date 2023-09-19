@@ -11,7 +11,7 @@ namespace BusinessLayer.RespositoryLayer
 {
     public interface IBLPagination
     {
-        public Student GetStudentsPerPage(SearchParameter parameter);
+        public PaginationResult GetStudentsPerPage(SearchParameter parameter);
         
     }
 }
