@@ -31,7 +31,7 @@ namespace DatabaseLayer.DatabaseLogic
                new SqlParameter ("@DropdownColumn",parameter.DropdownColumn?.ToUpper()),
                new SqlParameter ("@DropdownColumnValue",parameter.DropdownColumnValue?.ToUpper()),
                new SqlParameter ("@SortDirection",parameter.SortDirection?.ToUpper()),
-               new SqlParameter ("@SortColumn",parameter.SortDirection?.ToUpper())
+               new SqlParameter ("@SortColumn",parameter.SortColumn?.ToUpper())
             };
 
             try

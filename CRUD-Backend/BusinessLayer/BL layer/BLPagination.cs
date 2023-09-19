@@ -21,7 +21,7 @@ namespace BusinessLayer.BL_layer
 
         public  PaginationResult GetStudentsPerPage(SearchParameter parameter)
         {
-            parameter.SortDirection = parameter.SortDirection is null ? "" : parameter.DropdownColumn.ToUpper();
+            parameter.SortDirection = parameter.SortDirection is null ? "" : parameter.SortDirection.ToUpper();
             parameter.DropdownColumnValue = parameter.DropdownColumnValue is null ? "" : parameter.DropdownColumnValue.ToUpper();
             parameter.DropdownColumn = parameter.DropdownColumn is null ? "" : parameter.DropdownColumn.ToUpper();
             var students =  dlPagination.GetStudentsPerPageFromDb(parameter);
