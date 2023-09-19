@@ -11,7 +11,7 @@ namespace BusinessLayer.RespositoryLayer
 {
     public interface IBLPagination
     {
-        public IEnumerable<Student> GetStudentsPerPage(SearchParameter parameter);
-        public Task<int> GetTotalCount();
+        public Student GetStudentsPerPage(SearchParameter parameter);
+        
     }
 }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ajaykumar.r\\Source\\Repos\\School-Management\\CRUD-Backend\\DatabaseLayer\\DatabaseLayer.csproj": {}
+    "C:\\Users\\ajaykumar.r\\source\\repos\\School-Management\\CRUD-Backend\\DatabaseLayer\\DatabaseLayer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ajaykumar.r\\Source\\Repos\\School-Management\\CRUD-Backend\\DatabaseLayer\\DatabaseLayer.csproj": {
+    "C:\\Users\\ajaykumar.r\\source\\repos\\School-Management\\CRUD-Backend\\DatabaseLayer\\DatabaseLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ajaykumar.r\\Source\\Repos\\School-Management\\CRUD-Backend\\DatabaseLayer\\DatabaseLayer.csproj",
+        "projectUniqueName": "C:\\Users\\ajaykumar.r\\source\\repos\\School-Management\\CRUD-Backend\\DatabaseLayer\\DatabaseLayer.csproj",
         "projectName": "DatabaseLayer",
-        "projectPath": "C:\\Users\\ajaykumar.r\\Source\\Repos\\School-Management\\CRUD-Backend\\DatabaseLayer\\DatabaseLayer.csproj",
+        "projectPath": "C:\\Users\\ajaykumar.r\\source\\repos\\School-Management\\CRUD-Backend\\DatabaseLayer\\DatabaseLayer.csproj",
         "packagesPath": "C:\\Users\\ajaykumar.r\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ajaykumar.r\\Source\\Repos\\School-Management\\CRUD-Backend\\DatabaseLayer\\obj\\",
+        "outputPath": "C:\\Users\\ajaykumar.r\\source\\repos\\School-Management\\CRUD-Backend\\DatabaseLayer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

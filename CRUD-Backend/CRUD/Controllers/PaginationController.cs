@@ -4,6 +4,7 @@ using CRUD.Utils;
 using DatabaseLayer.DatabaseLogic.Models;
 using DatabaseLayer.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Data.Common;
 using System.Reflection.Metadata;
 
 namespace CRUD.Controllers
@@ -33,18 +34,6 @@ namespace CRUD.Controllers
 
         }
 
-        [HttpGet]
-        public async Task<Responses> GetTotalRecords()
-        {
-            int count = await bl.GetTotalCount();
-            if (count != 0)
-            {
-                return StatusHandler.ProcessHttpStatusCode(count, "Data Succesfully Fetched from the Db");
-            }
-            else
-            {
-                return StatusHandler.ProcessHttpStatusCode(count, null);
-            }
-        }
+      
     }
 }
