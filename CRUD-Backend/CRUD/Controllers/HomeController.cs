@@ -75,7 +75,6 @@ namespace CRUD.Controllers
         public async Task<Responses> Put(int id, [FromBody] Student value)
         {
             Student student = await bl.UpdateStudent(id, value);
-
             if (student is not null)
             {
                 return StatusHandler.ProcessHttpStatusCode(student, "Updated Succesfully");
