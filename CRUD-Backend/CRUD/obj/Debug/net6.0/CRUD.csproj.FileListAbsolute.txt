@@ -256,3 +256,4 @@ C:\Users\ajaykumar.r\Source\Repos\School-Management\CRUD-Backend\CRUD\obj\Debug\
 C:\Users\ajaykumar.r\Source\Repos\School-Management\CRUD-Backend\CRUD\obj\Debug\net6.0\CRUD.pdb
 C:\Users\ajaykumar.r\Source\Repos\School-Management\CRUD-Backend\CRUD\obj\Debug\net6.0\CRUD.genruntimeconfig.cache
 C:\Users\ajaykumar.r\Source\Repos\School-Management\CRUD-Backend\CRUD\obj\Debug\net6.0\ref\CRUD.dll
+C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
