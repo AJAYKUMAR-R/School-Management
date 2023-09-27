@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.RespositoryLayer;
+using CRUD.Filters;
 using CRUD.RespositoryLayer;
 using CRUD.Utils;
 using DatabaseLayer.DatabaseLogic.Models;
@@ -12,7 +13,7 @@ namespace CRUD.Controllers
 {
     [Route("CRUD/[controller]")]
     [ApiController]
-    [Authorize]
+    [CustomAuthorize("Admin")]
     public class PaginationController : ControllerBase
     {
         private readonly IBLPagination bl;

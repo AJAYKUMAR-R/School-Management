@@ -43,7 +43,7 @@ namespace CRUD
             builder.Services.AddTransient<ErrorHandlerMiddleware>();
 
             //injecting Error Middle ware
-            builder.Services.AddTransient<AuthenticationService>();
+            builder.Services.AddSingleton<AuthenticationService>();
 
             //Adding the Authentication Services 
             //it should emphasis that it should be default JwtBearer is Default Authentication

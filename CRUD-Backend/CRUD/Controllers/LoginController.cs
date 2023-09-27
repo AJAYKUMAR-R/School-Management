@@ -2,12 +2,15 @@
 using BusinessLayer.BL_layer;
 using CRUD.Utils;
 using DatabaseLayer.DatabaseLogic.Models;
+using DatabaseLayer.DTO;
 using DatabaseLayer.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.Win32;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -29,10 +32,6 @@ namespace CRUD.Controllers
             _authenticationService = authenticationService;
         }
 
-         UserDto _user=new UserDto();
-
-        public AuthenticationService AuthenticationService { get; }
-
         // GET: api/<LoginController>
         [HttpGet]
         public IEnumerable<string> Get()
@@ -48,35 +47,64 @@ namespace CRUD.Controllers
         }
 
         // POST api/<LoginController>
-        [HttpPost]
-        public Responses Post([FromBody] UserDto Dto)
+        //[HttpPost]
+        //public Responses SignIn([FromBody] RegisterStudent register)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var result = _authenticationService.SignUp(register);
+        //        if(result)
+        //        {
+        //            return StatusHandler.ProcessHttpStatusCode(register, "Registered Succes Fully");
+        //        }
+        //        else
+        //        {
+        //            return StatusHandler.ProcessHttpStatusCode(null, "Internall Server Error");
+        //        }
+        //    }
+        //    else
+        //    {
+        //        List<String> errors = new List<String>();
+        //        foreach (var key in ModelState.Keys)
+        //        {
+        //            var entry = ModelState[key];
+        //            foreach (var error in entry.Errors)
+        //            {
+        //                errors.Add(error.ErrorMessage);
+        //            }
+        //        }
+        //        return StatusHandler.ProcessHttpStatusCode(errors,"Validation Fails");
+        //    }
+        //}
+
+        [HttpPost("SignUp")]
+        public Responses SignUp([FromBody] RegisterStudent register)
         {
-            if(Dto is not null)
+            if (ModelState.IsValid)
             {
-                User user = new User();
-                user.Username = Dto.Username;
-                user.Password = Dto.Password;
-                var flag = _authenticationService.SignIn(user);
-                if (flag is not null)
+                var result = _authenticationService.SignUp(register);
+                if (result)
                 {
-                    return StatusHandler.ProcessHttpStatusCode(flag, "Login SuccesFull");
+                    return StatusHandler.ProcessHttpStatusCode(register, "Registered Succes Fully");
                 }
                 else
                 {
-                    return StatusHandler.ProcessHttpStatusCode(null,null);
+                    return StatusHandler.ProcessHttpStatusCode(null, "Internall Server Error");
                 }
-                //_user.Username= Dto.Username;
-                //_user.Password= Dto.Password;
-                //CreatePasswordHash(_user.Password, out byte[] passwordHash, out byte[] passwordSalt);
-                //User user = new User();
-                //user.PasswordHash = passwordHash;
-                //user.PasswordSalt = passwordSalt;
-                //string token = CreateToken(user);
-                //return token;
             }
             else
             {
-                return StatusHandler.ProcessHttpStatusCode(null, null);
+                List<String> errors = new List<String>();
+                foreach (var key in ModelState.Keys)
+                {
+                    var entry = ModelState[key];
+                    foreach (var error in entry.Errors)
+                    {
+                        
+                        errors.Add(error.ErrorMessage);
+                    }
+                }
+                return StatusHandler.ProcessHttpStatusCode(errors, "Validation Fails");
             }
         }
 
@@ -91,66 +119,6 @@ namespace CRUD.Controllers
         public void Delete(int id)
         {
         }
-
-        private string CreateToken(User user)
-        {
-            List<Claim> claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Name, user.Username),
-                new Claim(ClaimTypes.Role, "Admin")
-            };
-
-            var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(
-                _configuration.GetSection("TokenName").Value));
-
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
-
-            var token = new JwtSecurityToken(
-                claims: claims,
-                expires: DateTime.Now.AddDays(1),
-                signingCredentials: creds);
-
-            var jwt = new JwtSecurityTokenHandler().WriteToken(token);
-
-            return jwt;
-        }
-
-        private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
-        {
-            ///intialize the Object with Randomly Generated Key
-            using (var hmac = new HMACSHA512())
-            {
-                passwordSalt = hmac.Key;
-                passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
-            }
-        }
-
-
-
-        private bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
-        {
-            using (var hmac = new HMACSHA512(passwordSalt))
-            {
-                var computedHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
-                return computedHash.SequenceEqual(passwordHash);
-            }
-        }
-
-        public class UserDto
-        {
-            public string Username { get; set; } = string.Empty;
-            public string Password { get; set; } = string.Empty;
-        }
-
-        //public class User
-        //{
-        //    public string Username { get; set; } = string.Empty;
-        //    public byte[] PasswordHash { get; set; }
-        //    public byte[] PasswordSalt { get; set; }
-        //    public string RefreshToken { get; set; } = string.Empty;
-        //    public DateTime TokenCreated { get; set; }
-        //    public DateTime TokenExpires { get; set; }
-        //}
 
     }
 }
