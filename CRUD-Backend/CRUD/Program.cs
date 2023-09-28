@@ -43,7 +43,9 @@ namespace CRUD
             builder.Services.AddTransient<ErrorHandlerMiddleware>();
 
             //injecting Error Middle ware
-            builder.Services.AddSingleton<AuthenticationService>();
+            builder.Services.AddTransient<IAuthenticationService,AuthenticationService>();
+
+            builder.Services.AddTransient<IDLLogin,DLLogin>();
 
             //Adding the Authentication Services 
             //it should emphasis that it should be default JwtBearer is Default Authentication

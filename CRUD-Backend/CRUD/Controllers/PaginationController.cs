@@ -13,7 +13,7 @@ namespace CRUD.Controllers
 {
     [Route("CRUD/[controller]")]
     [ApiController]
-    [CustomAuthorize("Admin")]
+    //[CustomAuthorize("Admin")]
     public class PaginationController : ControllerBase
     {
         private readonly IBLPagination bl;

@@ -1,5 +1,6 @@
 ﻿using Azure;
 using BusinessLayer.BL_layer;
+using BusinessLayer.RespositoryLayer;
 using CRUD.Utils;
 using DatabaseLayer.DatabaseLogic.Models;
 using DatabaseLayer.DTO;
@@ -24,9 +25,9 @@ namespace CRUD.Controllers
     public class LoginController : ControllerBase
     {
         private readonly IConfiguration _configuration;
-        private readonly AuthenticationService _authenticationService;
+        private readonly IAuthenticationService _authenticationService;
 
-        public LoginController(IConfiguration _configuration, AuthenticationService authenticationService)
+        public LoginController(IConfiguration _configuration, IAuthenticationService authenticationService)
         {
            this._configuration = _configuration;
             _authenticationService = authenticationService;
@@ -46,46 +47,46 @@ namespace CRUD.Controllers
            return "value";
         }
 
-        // POST api/<LoginController>
-        //[HttpPost]
-        //public Responses SignIn([FromBody] RegisterStudent register)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var result = _authenticationService.SignUp(register);
-        //        if(result)
-        //        {
-        //            return StatusHandler.ProcessHttpStatusCode(register, "Registered Succes Fully");
-        //        }
-        //        else
-        //        {
-        //            return StatusHandler.ProcessHttpStatusCode(null, "Internall Server Error");
-        //        }
-        //    }
-        //    else
-        //    {
-        //        List<String> errors = new List<String>();
-        //        foreach (var key in ModelState.Keys)
-        //        {
-        //            var entry = ModelState[key];
-        //            foreach (var error in entry.Errors)
-        //            {
-        //                errors.Add(error.ErrorMessage);
-        //            }
-        //        }
-        //        return StatusHandler.ProcessHttpStatusCode(errors,"Validation Fails");
-        //    }
-        //}
-
-        [HttpPost("SignUp")]
-        public Responses SignUp([FromBody] RegisterStudent register)
+        ///POST api/<LoginController>
+        [HttpPost]
+        public async Task<Responses> SignIn([FromBody] User user)
         {
             if (ModelState.IsValid)
             {
-                var result = _authenticationService.SignUp(register);
+                var result = await _authenticationService.SignIn(user);
+                if (result is not null)
+                {
+                    return StatusHandler.ProcessHttpStatusCode(result, "Login SuccessFully");
+                }
+                else
+                {
+                    return StatusHandler.ProcessHttpStatusCode(null, "Email or Password InCorrect");
+                }
+            }
+            else
+            {
+                List<String> errors = new List<String>();
+                foreach (var key in ModelState.Keys)
+                {
+                    var entry = ModelState[key];
+                    foreach (var error in entry.Errors)
+                    {
+                        errors.Add(error.ErrorMessage);
+                    }
+                }
+                return StatusHandler.ProcessHttpStatusCode(errors, "Validation Fails");
+            }
+        }
+
+        [HttpPost("SignUp")]
+        public async Task<Responses> SignUp([FromBody] Register register)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _authenticationService.SignUp(register);
                 if (result)
                 {
-                    return StatusHandler.ProcessHttpStatusCode(register, "Registered Succes Fully");
+                    return StatusHandler.ProcessHttpStatusCode(register, "Registered SuccessFully");
                 }
                 else
                 {
