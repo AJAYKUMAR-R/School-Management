@@ -257,3 +257,7 @@ C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\obj\Debug\
 C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\obj\Debug\net6.0\CRUD.pdb
 C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\obj\Debug\net6.0\CRUD.genruntimeconfig.cache
 C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\obj\Debug\net6.0\ref\CRUD.dll
+C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\bin\Debug\net6.0\FluentValidation.dll
+C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\bin\Debug\net6.0\FluentValidation.AspNetCore.dll
+C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\bin\Debug\net6.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\obj\Debug\net6.0\CRUD.MvcApplicationPartsAssemblyInfo.cs

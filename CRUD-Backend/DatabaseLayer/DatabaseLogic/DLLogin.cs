@@ -25,13 +25,13 @@ namespace DatabaseLayer.DatabaseLogic
         public async Task<bool> RegisterUser(StudentProfile student)
         {
             SqlParameter[] sqlParameter = new SqlParameter[]{
-                new SqlParameter  ("@studentName",student.StudentName),
-                new SqlParameter  ("@email",student.Email),
-                new SqlParameter  ("@passwordSalt",student.PasswordSalt),
-                 new SqlParameter ("@passwordHash",student.PasswordHash),
-                 new SqlParameter ("@Pincode",student.Pincode),
-                 new SqlParameter ("@Country",student.Country),
-                 new SqlParameter ("@Roles",student.Roles)
+                new SqlParameter ("@studentName",student.StudentName),
+                new SqlParameter ("@email",student.Email),
+                new SqlParameter ("@passwordSalt",student.PasswordSalt),
+                new SqlParameter ("@passwordHash",student.PasswordHash),
+                new SqlParameter ("@Pincode",student.Pincode),
+                new SqlParameter ("@Country",student.Country),
+                new SqlParameter ("@Roles",student.Roles)
             };
 
             try

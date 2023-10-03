@@ -25,6 +25,7 @@ namespace DatabaseLayer.DTO
         [RegularExpression(@"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+|~=`{}\[\]:;""'<>,.?/])(?!.*\s).{8,}$", ErrorMessage = "Password is not in Correct Format")]
         public string? Password { get; set; }
         [Required(ErrorMessage = "ConfirmPassword is Required")]
+        [Compare("Password",ErrorMessage = "Password and confirm password is not Matching")]
         public string? ConfirmPassword { get; set; }
         [Required(ErrorMessage = "Pincode is Required")]
         public long? Pincode { get; set; }
