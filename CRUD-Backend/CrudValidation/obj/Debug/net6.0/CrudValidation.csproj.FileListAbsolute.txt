@@ -1,0 +1,15 @@
+C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CrudValidation\bin\Debug\net6.0\CrudValidation.deps.json
+C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CrudValidation\bin\Debug\net6.0\CrudValidation.dll
+C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CrudValidation\bin\Debug\net6.0\CrudValidation.pdb
+C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CrudValidation\bin\Debug\net6.0\DatabaseLayer.dll
+C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CrudValidation\bin\Debug\net6.0\DatabaseLayer.pdb
+C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CrudValidation\obj\Debug\net6.0\CrudValidation.csproj.AssemblyReference.cache
+C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CrudValidation\obj\Debug\net6.0\CrudValidation.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CrudValidation\obj\Debug\net6.0\CrudValidation.AssemblyInfoInputs.cache
+C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CrudValidation\obj\Debug\net6.0\CrudValidation.AssemblyInfo.cs
+C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CrudValidation\obj\Debug\net6.0\CrudValidation.csproj.CoreCompileInputs.cache
+C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CrudValidation\obj\Debug\net6.0\CrudValidation.csproj.CopyComplete
+C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CrudValidation\obj\Debug\net6.0\CrudValidation.dll
+C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CrudValidation\obj\Debug\net6.0\refint\CrudValidation.dll
+C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CrudValidation\obj\Debug\net6.0\CrudValidation.pdb
+C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CrudValidation\obj\Debug\net6.0\ref\CrudValidation.dll

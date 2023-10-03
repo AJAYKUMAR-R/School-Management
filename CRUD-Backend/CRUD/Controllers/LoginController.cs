@@ -5,6 +5,7 @@ using CRUD.Utils;
 using DatabaseLayer.DatabaseLogic.Models;
 using DatabaseLayer.DTO;
 using DatabaseLayer.Models;
+using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -26,11 +27,15 @@ namespace CRUD.Controllers
     {
         private readonly IConfiguration _configuration;
         private readonly IAuthenticationService _authenticationService;
+        private readonly IValidator<Register> _validator;
 
-        public LoginController(IConfiguration _configuration, IAuthenticationService authenticationService)
+        public LoginController(IConfiguration configuration
+            , IAuthenticationService authenticationService,
+            IValidator<Register> validator)
         {
-           this._configuration = _configuration;
-            _authenticationService = authenticationService;
+           this._configuration = configuration;
+           this._authenticationService = authenticationService;
+           this._validator = validator;
         }
 
         // GET: api/<LoginController>
@@ -81,7 +86,8 @@ namespace CRUD.Controllers
         [HttpPost("SignUp")]
         public async Task<Responses> SignUp([FromBody] Register register)
         {
-            if (ModelState.IsValid)
+            var registerValidaion = await _validator.ValidateAsync(register);
+            if (registerValidaion.IsValid)
             {
                 var result = await _authenticationService.SignUp(register);
                 if (result)
@@ -96,14 +102,9 @@ namespace CRUD.Controllers
             else
             {
                 List<String> errors = new List<String>();
-                foreach (var key in ModelState.Keys)
+                foreach (var key in registerValidaion.Errors)
                 {
-                    var entry = ModelState[key];
-                    foreach (var error in entry.Errors)
-                    {
-                        
-                        errors.Add(error.ErrorMessage);
-                    }
+                   errors.Add(key.ErrorMessage);
                 }
                 return StatusHandler.ProcessHttpStatusCode(errors, "Validation Fails");
             }

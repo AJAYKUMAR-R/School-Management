@@ -3,12 +3,16 @@ using BusinessLayer.RespositoryLayer;
 using CRUD.BL_layer;
 using CRUD.Middlewares;
 using CRUD.RespositoryLayer;
+using CrudValidation.LoginValidation;
 using DatabaseLayer.DatabaseAbstraction;
 using DatabaseLayer.DatabaseLogic;
 using DatabaseLayer.DatabaseLogic.Models;
 using DatabaseLayer.DatabseAbstraction;
+using DatabaseLayer.DTO;
 using DatabaseLayer.Models;
+using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -46,6 +50,8 @@ namespace CRUD
             builder.Services.AddTransient<IAuthenticationService,AuthenticationService>();
 
             builder.Services.AddTransient<IDLLogin,DLLogin>();
+
+            builder.Services.AddScoped<IValidator<Register>,RegisterValidation>();
 
             //Adding the Authentication Services 
             //it should emphasis that it should be default JwtBearer is Default Authentication
