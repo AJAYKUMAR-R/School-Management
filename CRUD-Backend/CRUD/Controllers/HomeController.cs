@@ -3,6 +3,8 @@ using CRUD.RespositoryLayer;
 using CRUD.Utils;
 using Microsoft.AspNetCore.Mvc;
 using DatabaseLayer.Models;
+using Microsoft.AspNetCore.Authorization;
+using CRUD.Filters;
 
 //For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -10,6 +12,8 @@ namespace CRUD.Controllers
 {
     [Route("CRUD/[controller]")]
     [ApiController]
+    [Authorize]
+    //[CustomAuthorize("User")]
     public class HomeController : ControllerBase
     {
         private readonly IBlSqlLogic bl;

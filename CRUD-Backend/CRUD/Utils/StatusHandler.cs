@@ -11,19 +11,19 @@ namespace CRUD.Utils
         {
             Responses response = new Responses();
             response.Status = StatusCodes.Status200OK;
-            response.StatusMsg = "Success";
 
             if(!string.IsNullOrEmpty(errorMsg))
             {
-                response.Data = data; 
+                response.Data = data;
+                response.StatusMsg = "Success";
                 response.ResponseMessage = errorMsg;
                 return response;
             }
             else
             {
                 response.Status = StatusCodes.Status500InternalServerError;
-                response.StatusMsg = "Error";
-                response.ResponseMessage = "Records not Found";
+                response.StatusMsg = "Failed";
+                response.ResponseMessage = errorMsg;
                 return response;
             }
 
