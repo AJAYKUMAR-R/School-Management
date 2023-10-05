@@ -12,30 +12,30 @@ namespace CrudValidation.LoginValidation
     {
         public RegisterValidation() 
         {
-            RuleFor(customer => customer.StudentName)
+            RuleFor(user => user.StudentName)
                 .Cascade(CascadeMode.StopOnFirstFailure)
                 .NotEmpty();
-            RuleFor(customer => customer.Email)
+            RuleFor(user => user.Email)
                 .Cascade(CascadeMode.StopOnFirstFailure)
                 .NotEmpty()
                 .EmailAddress()
                 ;
-            RuleFor(customer => customer.Password)
+            RuleFor(user => user.Password)
                 .Cascade(CascadeMode.StopOnFirstFailure)
                 .NotEmpty()
                 .Matches(@"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+|~=`{}\[\]:;""'<>,.?/])(?!.*\s).{8,}$").
-                Equal(customer => customer.ConfirmPassword);
-            RuleFor(customer => customer.ConfirmPassword)
+                Equal(user => user.ConfirmPassword);
+            RuleFor(user => user.ConfirmPassword)
                 .Cascade(CascadeMode.StopOnFirstFailure)
                 .NotEmpty()
                 .Matches(@"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+|~=`{}\[\]:;""'<>,.?/])(?!.*\s).{8,}$");
-            RuleFor(customer => customer.Country)
+            RuleFor(user => user.Country)
                 .Cascade(CascadeMode.StopOnFirstFailure)
                 .NotEmpty();
-            RuleFor(customer => customer.Pincode)
+            RuleFor(user => user.Pincode)
                 .Cascade(CascadeMode.StopOnFirstFailure)
                 .NotEmpty();
-            RuleFor(customer => customer.Roles)
+            RuleFor(user => user.Roles)
                 .Cascade(CascadeMode.StopOnFirstFailure)
                 .NotEmpty();
         }

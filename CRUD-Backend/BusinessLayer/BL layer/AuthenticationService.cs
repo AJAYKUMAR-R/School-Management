@@ -14,6 +14,7 @@ using Microsoft.Data.SqlClient;
 using DatabaseLayer.DatabaseLogic;
 using DatabaseLayer.DatabaseAbstraction;
 using BusinessLayer.RespositoryLayer;
+using Azure.Core;
 
 namespace BusinessLayer.BL_layer
 {
@@ -28,15 +29,24 @@ namespace BusinessLayer.BL_layer
             this._iDLLogin= iDLLogin;
         }
 
-        public async Task<string> SignIn(User user)
+        public async Task<UserTokens> SignIn(User user)
         {
-            StudentProfile st = await _iDLLogin.GetUser(user);
+            UserProfile st = await _iDLLogin.GetUser(user);
             if (st != null)
             {
                 var flag = this.VerifyPasswordHash(user.Password,st.PasswordHash,st.PasswordSalt);
                 if (flag)
                 {
-                    return this.CreateJwTtoken(st);
+                    string refreshToken = await this.CreateRefreshToken();
+                    string jwtToken = this.CreateJwTtoken(st);
+                    var isAdded = await _iDLLogin.CreateRefreshToken(refreshToken, DateTime.Now.AddDays(5),user.Email);
+                    if(isAdded)
+                        return new UserTokens()
+                        {
+                            RefreshTokens = refreshToken,
+                            JwtTokens = jwtToken
+                        };
+                    return null;
                 }
                 else
                 {
@@ -50,11 +60,13 @@ namespace BusinessLayer.BL_layer
         }
 
 
+       
+
         public async Task<bool> SignUp(Register user)
         {
             if (user is not null)
             {
-                StudentProfile studentProfile = new StudentProfile();
+                UserProfile studentProfile = new UserProfile();
                 studentProfile.Country = user.Country;
                 studentProfile.Roles = user.Roles;
                 studentProfile.Email = user.Email;
@@ -82,12 +94,13 @@ namespace BusinessLayer.BL_layer
 
         }
 
-        public string CreateJwTtoken(StudentProfile user)
+        public string CreateJwTtoken(UserProfile user)
         {
             List<Claim> claims = new List<Claim>
             {
                 new Claim("name", user.StudentName),
-                new Claim("Role", user.Roles)
+                new Claim("Role", user.Roles),
+                new Claim("Email", user.Email)
             };
 
             var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(
@@ -97,7 +110,7 @@ namespace BusinessLayer.BL_layer
 
             var token = new JwtSecurityToken(
                 claims: claims,
-                expires: DateTime.Now.AddDays(1),
+                expires: DateTime.Now.AddSeconds(1),
                 signingCredentials: creds);
 
             var jwt = new JwtSecurityTokenHandler().WriteToken(token);
@@ -133,5 +146,73 @@ namespace BusinessLayer.BL_layer
                 return computedHash.SequenceEqual(passwordHash);
             }
         }
+
+        public async Task<string> CreateRefreshToken()
+        {
+            var tokenBytes = RandomNumberGenerator.GetBytes(64);
+            var refreshToken = Convert.ToBase64String(tokenBytes);
+            var tokenInUser = await _iDLLogin.SearchRefreshToken(refreshToken);
+            if (tokenInUser)
+            {
+                return await CreateRefreshToken();
+            }
+            return refreshToken;
+        }
+
+
+        private ClaimsPrincipal GetPrincipleFromExpiredToken(string token)
+        {
+            //generating Symentric Key
+            var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(
+                _configuration.GetSection("TokenName").Value));
+
+            //Seting up the Token Validator
+            var tokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateAudience = false,
+                ValidateIssuer = false,
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = key,
+                ValidateLifetime = true,
+
+            };
+            var tokenHandler = new JwtSecurityTokenHandler();
+            SecurityToken securityToken;
+            //Return the Claims principle
+            var principal = tokenHandler.ValidateToken(token, tokenValidationParameters, out securityToken);
+            //convert Security Token to Orginal Token
+            var jwtSecurityToken = securityToken as JwtSecurityToken;
+
+            if (jwtSecurityToken == null)
+               //|| !jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha512, StringComparison.InvariantCultureIgnoreCase)
+                throw new SecurityTokenException("This is Invalid Token");
+            return principal;
+
+        }
+
+        public async Task<UserTokens> UpdateRefreshTokens(string refreshToken, string oldJwttoken)
+        {
+            User userProfile = new User();
+            var principal = GetPrincipleFromExpiredToken(oldJwttoken);
+            var userClaims = principal.Claims.FirstOrDefault(c => c.Type == "Email");
+            userProfile.Email = userClaims.Value;
+            var user = await _iDLLogin.GetUser(userProfile);
+            //comparing with DB data
+            //here the Refresh Token is the Key for Authering User
+            if (user is null || user.RefreshToken != refreshToken || user.RefreshExpireTime <= DateTime.Now)
+                return null;
+            var newJwtToken = this.CreateJwTtoken(user);
+            var newRefreshToken = await CreateRefreshToken();
+            var isAdded = await _iDLLogin.CreateRefreshToken(newRefreshToken, DateTime.UtcNow.AddDays(5),userProfile.Email);
+            if (isAdded)
+                return new UserTokens()
+                {
+                    JwtTokens = newJwtToken,
+                    RefreshTokens = newRefreshToken,
+                };
+            return null;
+        }
+
+
     }
 }

@@ -53,6 +53,8 @@ namespace CRUD
 
             builder.Services.AddScoped<IValidator<Register>,RegisterValidation>();
 
+            builder.Services.AddScoped<IValidator<User>, UserValidation>();
+
             //Adding the Authentication Services 
             //it should emphasis that it should be default JwtBearer is Default Authentication
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -70,7 +72,9 @@ namespace CRUD
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8
                             .GetBytes(builder.Configuration.GetSection("TokenName").Value)),
                         ValidateIssuer = false, // Issuer validation is disabled
-                        ValidateAudience = false // Audience validation is disabled
+                        ValidateAudience = false, // Audience validation is disabled
+                        ValidateLifetime = true,
+                        ClockSkew = TimeSpan.Zero
                     };
                 });
 

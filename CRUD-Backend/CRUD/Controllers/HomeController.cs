@@ -12,6 +12,7 @@ namespace CRUD.Controllers
 {
     [Route("CRUD/[controller]")]
     [ApiController]
+    [Authorize]
     //[CustomAuthorize("User")]
     public class HomeController : ControllerBase
     {

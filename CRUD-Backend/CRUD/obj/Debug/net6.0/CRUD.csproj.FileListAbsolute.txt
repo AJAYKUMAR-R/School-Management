@@ -179,6 +179,9 @@ C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\bin\Debug\
 C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\bin\Debug\net6.0\CRUD.pdb
 C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\bin\Debug\net6.0\Azure.Core.dll
 C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\bin\Debug\net6.0\Azure.Identity.dll
+C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\bin\Debug\net6.0\FluentValidation.dll
+C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\bin\Debug\net6.0\FluentValidation.AspNetCore.dll
+C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\bin\Debug\net6.0\FluentValidation.DependencyInjectionExtensions.dll
 C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\bin\Debug\net6.0\Humanizer.dll
 C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
@@ -234,14 +237,17 @@ C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\bin\Debug\
 C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
 C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\bin\Debug\net6.0\BusinessLayer.dll
+C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\bin\Debug\net6.0\CrudValidation.dll
 C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\bin\Debug\net6.0\DatabaseLayer.dll
 C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\bin\Debug\net6.0\BusinessLayer.pdb
+C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\bin\Debug\net6.0\CrudValidation.pdb
 C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\bin\Debug\net6.0\DatabaseLayer.pdb
 C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\obj\Debug\net6.0\CRUD.csproj.AssemblyReference.cache
 C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\obj\Debug\net6.0\CRUD.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\obj\Debug\net6.0\CRUD.AssemblyInfoInputs.cache
 C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\obj\Debug\net6.0\CRUD.AssemblyInfo.cs
 C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\obj\Debug\net6.0\CRUD.csproj.CoreCompileInputs.cache
+C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\obj\Debug\net6.0\CRUD.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\obj\Debug\net6.0\CRUD.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\obj\Debug\net6.0\staticwebassets\msbuild.CRUD.Microsoft.AspNetCore.StaticWebAssets.props
 C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\obj\Debug\net6.0\staticwebassets\msbuild.build.CRUD.props
@@ -257,9 +263,3 @@ C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\obj\Debug\
 C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\obj\Debug\net6.0\CRUD.pdb
 C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\obj\Debug\net6.0\CRUD.genruntimeconfig.cache
 C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\obj\Debug\net6.0\ref\CRUD.dll
-C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\bin\Debug\net6.0\FluentValidation.dll
-C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\bin\Debug\net6.0\FluentValidation.AspNetCore.dll
-C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\bin\Debug\net6.0\FluentValidation.DependencyInjectionExtensions.dll
-C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\obj\Debug\net6.0\CRUD.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\bin\Debug\net6.0\CrudValidation.dll
-C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\bin\Debug\net6.0\CrudValidation.pdb

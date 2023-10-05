@@ -22,7 +22,7 @@ namespace DatabaseLayer.DatabaseLogic
             this._dbcontext = _dbcontext;
         }
 
-        public async Task<bool> RegisterUser(StudentProfile student)
+        public async Task<bool> RegisterUser(UserProfile student)
         {
             SqlParameter[] sqlParameter = new SqlParameter[]{
                 new SqlParameter ("@studentName",student.StudentName),
@@ -46,7 +46,7 @@ namespace DatabaseLayer.DatabaseLogic
             
         }
 
-        public async Task<StudentProfile> GetUser(User student)
+        public async Task<UserProfile> GetUser(User student)
         {
             //seting the values
             SqlParameter[] sqlParameter = new SqlParameter[]{
@@ -55,7 +55,7 @@ namespace DatabaseLayer.DatabaseLogic
 
             try
             {
-                var students = _dbcontext.StudentProfiles.FromSqlRaw("EXEC [DBO].[SEARCHUSER] @email"
+                var students = _dbcontext.UserProfiles.FromSqlRaw("EXEC [DBO].[SEARCHUSER] @email"
                     , sqlParameter)
                     .ToList().FirstOrDefault();
                 return students;
@@ -65,6 +65,45 @@ namespace DatabaseLayer.DatabaseLogic
             {
                 return null;
             }
+        }
+
+        public async Task<bool> CreateRefreshToken(string refreshToken,DateTime refreshExpireTime,string email)
+        {
+            SqlParameter[] sqlParameter = new SqlParameter[]{
+                new SqlParameter ("@refershToken",System.Data.SqlDbType.VarChar,255) { Value = refreshToken},
+                new SqlParameter ("@refreshTokenExpireDate",System.Data.SqlDbType.DateTime) { Value = refreshExpireTime},
+                new SqlParameter ("@email",System.Data.SqlDbType.VarChar,255){ Value = email }
+            };
+
+            try
+            {
+                var count = await _dbcontext.Database.ExecuteSqlRawAsync("EXEC [DBO].[CREATEREFRESHTOKEN] @refershToken,@refreshTokenExpireDate,@email", sqlParameter);
+                if(count > 0)
+                    return true;
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
+
+        }
+
+        public async Task<bool> SearchRefreshToken(string refreshToken)
+        {
+
+            try
+            {
+                var isRefresh =  await _dbcontext.UserProfiles.AnyAsync((user) => user.RefreshToken.Equals(refreshToken));
+                if(isRefresh)
+                    return true;
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
+
         }
 
 

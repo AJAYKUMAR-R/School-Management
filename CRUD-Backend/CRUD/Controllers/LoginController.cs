@@ -2,6 +2,7 @@
 using BusinessLayer.BL_layer;
 using BusinessLayer.RespositoryLayer;
 using CRUD.Utils;
+using CrudValidation.LoginValidation;
 using DatabaseLayer.DatabaseLogic.Models;
 using DatabaseLayer.DTO;
 using DatabaseLayer.Models;
@@ -25,17 +26,18 @@ namespace CRUD.Controllers
     [ApiController]
     public class LoginController : ControllerBase
     {
-        private readonly IConfiguration _configuration;
         private readonly IAuthenticationService _authenticationService;
-        private readonly IValidator<Register> _validator;
+        private readonly IValidator<Register> _registerValidator;
+        private readonly IValidator<User> _userValidator;
 
-        public LoginController(IConfiguration configuration
-            , IAuthenticationService authenticationService,
-            IValidator<Register> validator)
+        public LoginController(
+            IAuthenticationService authenticationService,
+            IValidator<Register> validator,
+            IValidator<User> _userValidator)
         {
-           this._configuration = configuration;
            this._authenticationService = authenticationService;
-           this._validator = validator;
+           this._registerValidator = validator;
+           this._userValidator = _userValidator;
         }
 
         // GET: api/<LoginController>
@@ -56,7 +58,8 @@ namespace CRUD.Controllers
         [HttpPost]
         public async Task<Responses> SignIn([FromBody] User user)
         {
-            if (ModelState.IsValid)
+            var loginValidaion = await _userValidator.ValidateAsync(user);
+            if (loginValidaion.IsValid)
             {
                 var result = await _authenticationService.SignIn(user);
                 if (result is not null)
@@ -71,13 +74,9 @@ namespace CRUD.Controllers
             else
             {
                 List<String> errors = new List<String>();
-                foreach (var key in ModelState.Keys)
+                foreach (var key in loginValidaion.Errors)
                 {
-                    var entry = ModelState[key];
-                    foreach (var error in entry.Errors)
-                    {
-                        errors.Add(error.ErrorMessage);
-                    }
+                    errors.Add(key.ErrorMessage);
                 }
                 return StatusHandler.ProcessHttpStatusCode(errors, "Validation Fails");
             }
@@ -86,7 +85,7 @@ namespace CRUD.Controllers
         [HttpPost("SignUp")]
         public async Task<Responses> SignUp([FromBody] Register register)
         {
-            var registerValidaion = await _validator.ValidateAsync(register);
+            var registerValidaion = await _registerValidator.ValidateAsync(register);
             if (registerValidaion.IsValid)
             {
                 var result = await _authenticationService.SignUp(register);
@@ -108,6 +107,22 @@ namespace CRUD.Controllers
                 }
                 return StatusHandler.ProcessHttpStatusCode(errors, "Validation Fails");
             }
+        }
+
+
+        [HttpPost("RefreshToken")]
+        public async Task<Responses> Refresh([FromBody] UserTokens tokenApiDto)
+        {
+            var tokenGenrated = await _authenticationService.UpdateRefreshTokens(tokenApiDto?.RefreshTokens, tokenApiDto?.JwtTokens);
+            if(tokenGenrated is not null)
+            {
+                return StatusHandler.ProcessHttpStatusCode(tokenGenrated,"TokenGenerated Succesfully");
+            }
+            else
+            {
+                return StatusHandler.ProcessHttpStatusCode(tokenGenrated, "Token is Invalid to process or Token Expired");
+            }
+         
         }
 
         // PUT api/<LoginController>/5

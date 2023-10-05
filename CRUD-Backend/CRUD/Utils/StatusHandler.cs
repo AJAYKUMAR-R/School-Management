@@ -14,7 +14,8 @@ namespace CRUD.Utils
 
             if(!string.IsNullOrEmpty(errorMsg))
             {
-                response.Data = data; 
+                response.Data = data;
+                response.StatusMsg = "Success";
                 response.ResponseMessage = errorMsg;
                 return response;
             }

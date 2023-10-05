@@ -17,8 +17,7 @@ public partial class CrudContext : DbContext
 
     public virtual DbSet<Student> Students { get; set; }
 
-    public virtual DbSet<StudentProfile> StudentProfiles { get; set; }
-
+    public virtual DbSet<UserProfile> UserProfiles { get; set; }
     public virtual DbSet<GetTotal> GetTotal { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -40,13 +39,13 @@ public partial class CrudContext : DbContext
                 .HasColumnName("studentName");
         });
 
-        modelBuilder.Entity<StudentProfile>(entity =>
+        modelBuilder.Entity<UserProfile>(entity =>
         {
-            entity.HasKey(e => e.StudentId).HasName("PK__StudentP__4D11D63CF559AADA");
+            entity.HasKey(e => e.StudentId).HasName("PK__UserProf__4D11D63CE7BBA608");
 
-            entity.ToTable("StudentProfile");
+            entity.ToTable("UserProfile");
 
-            entity.HasIndex(e => e.Email, "UQ__StudentP__AB6E616478329AF0").IsUnique();
+            entity.HasIndex(e => e.Email, "UQ__UserProf__AB6E6164E13F0DE4").IsUnique();
 
             entity.Property(e => e.StudentId).HasColumnName("studentId");
             entity.Property(e => e.Country)
@@ -55,12 +54,18 @@ public partial class CrudContext : DbContext
             entity.Property(e => e.Email)
                 .HasMaxLength(255)
                 .HasColumnName("email");
+            entity.Property(e => e.IsActive).HasDefaultValueSql("((1))");
+            entity.Property(e => e.Isdeleted).HasDefaultValueSql("((1))");
             entity.Property(e => e.PasswordHash)
                 .HasMaxLength(64)
                 .HasColumnName("passwordHash");
             entity.Property(e => e.PasswordSalt)
                 .HasMaxLength(128)
                 .HasColumnName("passwordSalt");
+            entity.Property(e => e.RefreshExpireTime).HasColumnType("datetime");
+            entity.Property(e => e.RefreshToken)
+                .HasMaxLength(255)
+                .IsUnicode(false);
             entity.Property(e => e.Roles)
                 .HasMaxLength(25)
                 .IsUnicode(false);

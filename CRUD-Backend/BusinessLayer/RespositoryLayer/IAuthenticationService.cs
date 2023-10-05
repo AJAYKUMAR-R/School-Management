@@ -11,11 +11,13 @@ namespace BusinessLayer.RespositoryLayer
     public interface IAuthenticationService
     {
 
-        Task<string> SignIn(User user);
+        Task<UserTokens> SignIn(User user);
         Task<bool> SignUp(Register user);
-        string CreateJwTtoken(StudentProfile user);
+        string CreateJwTtoken(UserProfile user);
         void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt);
         bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt);
+        Task<string> CreateRefreshToken();
+        Task<UserTokens> UpdateRefreshTokens(string refreshToken, string oldJwttoken);
 
     }
 }
