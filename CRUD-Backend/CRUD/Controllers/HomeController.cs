@@ -30,11 +30,11 @@ namespace CRUD.Controllers
 
             if (Student is not null)
             {
-                return StatusHandler.ProcessHttpStatusCode(Student, "Data Succesfully Fetched from the Db");
+                return StatusHandler.ProcessHttpStatusCode(Student, "Data Succesfully Fetched from the Db", 200);
             }
             else
             {
-                return StatusHandler.ProcessHttpStatusCode(Student, null);
+                return StatusHandler.ProcessHttpStatusCode(Student, null,500);
             }
 
         }
@@ -47,11 +47,11 @@ namespace CRUD.Controllers
             Student data = await bl.GetStudents(id);
             if (data is not null)
             {
-                return StatusHandler.ProcessHttpStatusCode(data, "Data is Fetched up from the Db");
+                return StatusHandler.ProcessHttpStatusCode(data, "Data is Fetched up from the Db",200);
             }
             else
             {
-                return StatusHandler.ProcessHttpStatusCode(data, null);
+                return StatusHandler.ProcessHttpStatusCode(data, null,500);
             }
 
         }
@@ -64,11 +64,11 @@ namespace CRUD.Controllers
             bool flag = await bl.CreateStudent(value);
             if (flag)
             {
-                return StatusHandler.ProcessHttpStatusCode(flag, "Record Created SuccessFully");
+                return StatusHandler.ProcessHttpStatusCode(flag, "Record Created SuccessFully",204);
             }
             else
             {
-                return StatusHandler.ProcessHttpStatusCode(flag, "Can't proceess the Data");
+                return StatusHandler.ProcessHttpStatusCode(flag, "Can't proceess the Data",500);
             }
 
 
@@ -81,11 +81,11 @@ namespace CRUD.Controllers
             Student student = await bl.UpdateStudent(id, value);
             if (student is not null)
             {
-                return StatusHandler.ProcessHttpStatusCode(student, "Updated Succesfully");
+                return StatusHandler.ProcessHttpStatusCode(student, "Updated Succesfully",204);
             }
             else
             {
-                return StatusHandler.ProcessHttpStatusCode(student, null);
+                return StatusHandler.ProcessHttpStatusCode(student, null,500);
             }
         }
 
@@ -96,11 +96,11 @@ namespace CRUD.Controllers
             var flag = await bl.DeleteStudent(id);
             if (flag)
             {
-                return StatusHandler.ProcessHttpStatusCode(flag, "SuccesFully Deleted");
+                return StatusHandler.ProcessHttpStatusCode(flag, "SuccesFully Deleted",204);
             }
             else
             {
-                return StatusHandler.ProcessHttpStatusCode(flag, null);
+                return StatusHandler.ProcessHttpStatusCode(flag, null,500);
             }
 
 

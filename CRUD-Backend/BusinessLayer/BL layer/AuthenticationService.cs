@@ -110,7 +110,7 @@ namespace BusinessLayer.BL_layer
 
             var token = new JwtSecurityToken(
                 claims: claims,
-                expires: DateTime.Now.AddSeconds(1),
+                expires: DateTime.Now.AddSeconds(30),
                 signingCredentials: creds);
 
             var jwt = new JwtSecurityTokenHandler().WriteToken(token);
@@ -211,6 +211,19 @@ namespace BusinessLayer.BL_layer
                     RefreshTokens = newRefreshToken,
                 };
             return null;
+        }
+
+        public async Task<bool> EmailExsistsCheck(string email)
+        {
+            if (!email.IsNullOrEmpty())
+            {
+                var ismail = await _iDLLogin.EmailExists(email);
+                return ismail ? true : false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
 

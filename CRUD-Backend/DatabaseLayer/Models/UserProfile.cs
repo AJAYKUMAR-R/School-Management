@@ -7,6 +7,8 @@ public partial class UserProfile
 {
     public int StudentId { get; set; }
 
+    public Guid? StudentGuid { get; set; }
+
     public string? StudentName { get; set; }
 
     public string Email { get; set; } = null!;
@@ -28,4 +30,6 @@ public partial class UserProfile
     public bool? Isdeleted { get; set; }
 
     public bool? IsActive { get; set; }
+
+    public DateTime? CreatedDate { get; set; }
 }

@@ -16,9 +16,9 @@ public partial class CrudContext : DbContext
     }
 
     public virtual DbSet<Student> Students { get; set; }
-
     public virtual DbSet<UserProfile> UserProfiles { get; set; }
     public virtual DbSet<GetTotal> GetTotal { get; set; }
+    //public virtual DbSet<GetEmail> GetEmail { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
@@ -41,21 +41,24 @@ public partial class CrudContext : DbContext
 
         modelBuilder.Entity<UserProfile>(entity =>
         {
-            entity.HasKey(e => e.StudentId).HasName("PK__UserProf__4D11D63CE7BBA608");
+            entity.HasKey(e => e.StudentId).HasName("PK__UserProf__4D11D63C20C9BDD1");
 
             entity.ToTable("UserProfile");
 
-            entity.HasIndex(e => e.Email, "UQ__UserProf__AB6E6164E13F0DE4").IsUnique();
+            entity.HasIndex(e => e.Email, "UQ__UserProf__AB6E6164C789A7DF").IsUnique();
 
             entity.Property(e => e.StudentId).HasColumnName("studentId");
             entity.Property(e => e.Country)
                 .HasMaxLength(255)
                 .IsUnicode(false);
+            entity.Property(e => e.CreatedDate)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
             entity.Property(e => e.Email)
                 .HasMaxLength(255)
                 .HasColumnName("email");
             entity.Property(e => e.IsActive).HasDefaultValueSql("((1))");
-            entity.Property(e => e.Isdeleted).HasDefaultValueSql("((1))");
+            entity.Property(e => e.Isdeleted).HasDefaultValueSql("((0))");
             entity.Property(e => e.PasswordHash)
                 .HasMaxLength(64)
                 .HasColumnName("passwordHash");
@@ -69,6 +72,7 @@ public partial class CrudContext : DbContext
             entity.Property(e => e.Roles)
                 .HasMaxLength(25)
                 .IsUnicode(false);
+            entity.Property(e => e.StudentGuid).HasDefaultValueSql("(newid())");
             entity.Property(e => e.StudentName)
                 .HasMaxLength(40)
                 .IsUnicode(false)

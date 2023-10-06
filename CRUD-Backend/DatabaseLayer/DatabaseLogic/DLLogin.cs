@@ -106,6 +106,30 @@ namespace DatabaseLayer.DatabaseLogic
 
         }
 
+        public Task<bool> EmailExists(string email)
+        {
+            SqlParameter sqlParameter = new SqlParameter("@email", System.Data.SqlDbType.VarChar, 255) { Value = email.Trim() };
+            List<UserProfile> student = null;
+            try
+            {
+                student = _dbcontext.UserProfiles.FromSqlRaw("EXEC EMAILEXISTS @email", sqlParameter).ToList();
+              
+            }
+            catch(Exception ex)
+            {
+                return Task.FromResult(false);
+            }
+            if(student is not null)
+            {
+                if (student?.Count > 0)
+                    return Task.FromResult(false);
+                return Task.FromResult(true);
+            }
+            else
+            {
+                return Task.FromResult(false);
+            }
+        }
 
 
     }

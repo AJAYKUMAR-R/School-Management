@@ -28,15 +28,13 @@ namespace CRUD.Controllers
             var Student = bl.GetStudentsPerPage(value);
             if (Student is not null)
             {
-                return StatusHandler.ProcessHttpStatusCode(Student, "Data Succesfully Fetched from the Db");
+                return StatusHandler.ProcessHttpStatusCode(Student, "Data Succesfully Fetched from the Db",200);
             }
             else
             {
-                return StatusHandler.ProcessHttpStatusCode(Student, null);
+                return StatusHandler.ProcessHttpStatusCode(Student, null,500);
             }
 
         }
-
-      
     }
 }

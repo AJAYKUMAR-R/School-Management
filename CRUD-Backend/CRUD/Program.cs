@@ -1,9 +1,12 @@
+using BusinessLayer;
 using BusinessLayer.BL_layer;
 using BusinessLayer.RespositoryLayer;
 using CRUD.BL_layer;
 using CRUD.Middlewares;
 using CRUD.RespositoryLayer;
+using CrudValidation;
 using CrudValidation.LoginValidation;
+using DatabaseLayer;
 using DatabaseLayer.DatabaseAbstraction;
 using DatabaseLayer.DatabaseLogic;
 using DatabaseLayer.DatabaseLogic.Models;
@@ -28,33 +31,21 @@ namespace CRUD
             // Add services to the container.
             builder.Services.AddControllers();
 
-            //Adding DI Db context
+            //Registering DI db Context
             builder.Services.AddTransient<CrudContext>();
 
-            //Adding DI for DL layer
-            builder.Services.AddTransient<IDLSlqLogic, DLSlqLogic>();
+            //Registering DL layer
+            builder.Services.RegisterDlServices();
 
-            //Adding DI for BL layer
-            builder.Services.AddTransient<IBlSqlLogic, BlSqlLogic>();
+            //Register BL layer
+            builder.Services.RegisterBlServices();
 
-            //Adding DI for DL layer --pagination
-            builder.Services.AddTransient<IDLPagination, DLPagination>();
+            //Register Validation Services
+            builder.Services.RegisterValidationServices();
 
-            //Adding DI for BL layer  --pagination
-            builder.Services.AddTransient<IBLPagination, BLPagination>();
+            builder.Services.AddSingleton<ErrorHandlerMiddleware>();
 
-            //injecting Error Middle ware
-            builder.Services.AddTransient<ErrorHandlerMiddleware>();
-
-            //injecting Error Middle ware
-            builder.Services.AddTransient<IAuthenticationService,AuthenticationService>();
-
-            builder.Services.AddTransient<IDLLogin,DLLogin>();
-
-            builder.Services.AddScoped<IValidator<Register>,RegisterValidation>();
-
-            builder.Services.AddScoped<IValidator<User>, UserValidation>();
-
+          
             //Adding the Authentication Services 
             //it should emphasis that it should be default JwtBearer is Default Authentication
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

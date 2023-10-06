@@ -40,19 +40,6 @@ namespace CRUD.Controllers
            this._userValidator = _userValidator;
         }
 
-        // GET: api/<LoginController>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/<LoginController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-           return "value";
-        }
 
         ///POST api/<LoginController>
         [HttpPost]
@@ -64,11 +51,15 @@ namespace CRUD.Controllers
                 var result = await _authenticationService.SignIn(user);
                 if (result is not null)
                 {
-                    return StatusHandler.ProcessHttpStatusCode(result, "Login SuccessFully");
+                    return StatusHandler.ProcessHttpStatusCode(result, "Login SuccessFully",200);
                 }
                 else
                 {
-                    return StatusHandler.ProcessHttpStatusCode(null, "Email or Password InCorrect");
+                    List<string> errors = new List<string>() {
+                        "Username or Password is in Correct"
+                    };
+                     
+                    return StatusHandler.ProcessHttpStatusCode(errors, "Email or Password InCorrect",400);
                 }
             }
             else
@@ -78,7 +69,7 @@ namespace CRUD.Controllers
                 {
                     errors.Add(key.ErrorMessage);
                 }
-                return StatusHandler.ProcessHttpStatusCode(errors, "Validation Fails");
+                return StatusHandler.ProcessHttpStatusCode(errors, "Validation Fails", 400);
             }
         }
 
@@ -91,11 +82,11 @@ namespace CRUD.Controllers
                 var result = await _authenticationService.SignUp(register);
                 if (result)
                 {
-                    return StatusHandler.ProcessHttpStatusCode(register, "Registered SuccessFully");
+                    return StatusHandler.ProcessHttpStatusCode(register, "Registered SuccessFully", 200);
                 }
                 else
                 {
-                    return StatusHandler.ProcessHttpStatusCode(null, "Internall Server Error");
+                    return StatusHandler.ProcessHttpStatusCode(null, "Internall Server Error",500);
                 }
             }
             else
@@ -105,7 +96,7 @@ namespace CRUD.Controllers
                 {
                    errors.Add(key.ErrorMessage);
                 }
-                return StatusHandler.ProcessHttpStatusCode(errors, "Validation Fails");
+                return StatusHandler.ProcessHttpStatusCode(errors, "Validation Fails",400);
             }
         }
 
@@ -116,19 +107,29 @@ namespace CRUD.Controllers
             var tokenGenrated = await _authenticationService.UpdateRefreshTokens(tokenApiDto?.RefreshTokens, tokenApiDto?.JwtTokens);
             if(tokenGenrated is not null)
             {
-                return StatusHandler.ProcessHttpStatusCode(tokenGenrated,"TokenGenerated Succesfully");
+                return StatusHandler.ProcessHttpStatusCode(tokenGenrated,"TokenGenerated Succesfully",200);
             }
             else
             {
-                return StatusHandler.ProcessHttpStatusCode(tokenGenrated, "Token is Invalid to process or Token Expired");
+                return StatusHandler.ProcessHttpStatusCode(tokenGenrated, "Token is Invalid to process or Token Expired",500);
             }
          
         }
 
+        [HttpPost("EmailExists")]
         // PUT api/<LoginController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<Responses> EmailExists([FromBody] GetEmail register)
         {
+            var isEmailExists = await _authenticationService.EmailExsistsCheck(register.Email);
+            if (isEmailExists)
+            {
+                return StatusHandler.ProcessHttpStatusCode(isEmailExists, "Unique Mail", 200);
+            }
+            else
+            {
+                return StatusHandler.ProcessHttpStatusCode(isEmailExists, "User Already Exists", 400);
+            }
+
         }
 
         // DELETE api/<LoginController>/5

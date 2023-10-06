@@ -18,6 +18,7 @@ namespace BusinessLayer.RespositoryLayer
         bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt);
         Task<string> CreateRefreshToken();
         Task<UserTokens> UpdateRefreshTokens(string refreshToken, string oldJwttoken);
+        Task<bool> EmailExsistsCheck(string email);
 
     }
 }
