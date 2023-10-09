@@ -104,7 +104,8 @@ namespace CRUD.Controllers
         [HttpPost("RefreshToken")]
         public async Task<Responses> Refresh([FromBody] UserTokens tokenApiDto)
         {
-            var tokenGenrated = await _authenticationService.UpdateRefreshTokens(tokenApiDto?.RefreshTokens, tokenApiDto?.JwtTokens);
+            var tokenGenrated = await _authenticationService
+                .UpdateRefreshTokens(tokenApiDto.RefreshTokens,tokenApiDto?.JwtTokens);
             if(tokenGenrated is not null)
             {
                 return StatusHandler.ProcessHttpStatusCode(tokenGenrated,"TokenGenerated Succesfully",200);
@@ -114,6 +115,22 @@ namespace CRUD.Controllers
                 return StatusHandler.ProcessHttpStatusCode(tokenGenrated, "Token is Invalid to process or Token Expired",500);
             }
          
+        }
+
+        // DELETE api/<LoginController>/5
+        [HttpPost("GetRefresh")]
+        public async Task<Responses> GetRefresh([FromBody] UserTokens tokenApiDto)
+        {
+            var isRefresh = await _authenticationService.getRefreshToken(tokenApiDto.JwtTokens);
+            if (!isRefresh.IsNullOrEmpty())
+            {
+                return StatusHandler.ProcessHttpStatusCode(isRefresh, "Refrsh Token Fetched Succesfully", 200);
+            }
+            else
+            {
+                return StatusHandler.ProcessHttpStatusCode(isRefresh, "Invalid Refrsh Token", 400);
+            }
+
         }
 
         [HttpPost("EmailExists")]
@@ -132,11 +149,7 @@ namespace CRUD.Controllers
 
         }
 
-        // DELETE api/<LoginController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+       
 
     }
 }

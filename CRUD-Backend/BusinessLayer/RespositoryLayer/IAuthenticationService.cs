@@ -17,8 +17,9 @@ namespace BusinessLayer.RespositoryLayer
         void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt);
         bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt);
         Task<string> CreateRefreshToken();
-        Task<UserTokens> UpdateRefreshTokens(string refreshToken, string oldJwttoken);
+        Task<UserTokens> UpdateRefreshTokens(string newRefreshToken,string oldJwttoken);
         Task<bool> EmailExsistsCheck(string email);
+        Task<string> getRefreshToken(string jwt);
 
     }
 }

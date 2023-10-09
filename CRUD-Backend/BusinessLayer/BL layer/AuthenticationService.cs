@@ -39,7 +39,7 @@ namespace BusinessLayer.BL_layer
                 {
                     string refreshToken = await this.CreateRefreshToken();
                     string jwtToken = this.CreateJwTtoken(st);
-                    var isAdded = await _iDLLogin.CreateRefreshToken(refreshToken, DateTime.Now.AddDays(5),user.Email);
+                    var isAdded = await _iDLLogin.CreateRefreshToken(refreshToken, DateTime.Now.AddSeconds(180),user.Email);
                     if(isAdded)
                         return new UserTokens()
                         {
@@ -190,7 +190,7 @@ namespace BusinessLayer.BL_layer
 
         }
 
-        public async Task<UserTokens> UpdateRefreshTokens(string refreshToken, string oldJwttoken)
+        public async Task<UserTokens> UpdateRefreshTokens(string RefreshToken, string oldJwttoken)
         {
             User userProfile = new User();
             var principal = GetPrincipleFromExpiredToken(oldJwttoken);
@@ -198,31 +198,53 @@ namespace BusinessLayer.BL_layer
             userProfile.Email = userClaims.Value;
             var user = await _iDLLogin.GetUser(userProfile);
             //comparing with DB data
-            //here the Refresh Token is the Key for Authering User
-            if (user is null || user.RefreshToken != refreshToken || user.RefreshExpireTime <= DateTime.Now)
-                return null;
-            var newJwtToken = this.CreateJwTtoken(user);
-            var newRefreshToken = await CreateRefreshToken();
-            var isAdded = await _iDLLogin.CreateRefreshToken(newRefreshToken, DateTime.UtcNow.AddDays(5),userProfile.Email);
-            if (isAdded)
+            if (user is not null && user.RefreshToken.Equals(user.RefreshToken) && (user.RefreshExpireTime > DateTime.Now))
+            {
+                var newJwtToken = this.CreateJwTtoken(user);
+                var newRefreshToken = await CreateRefreshToken();
+                var isAdded = await _iDLLogin.CreateRefreshToken(newRefreshToken,null,userProfile.Email);
                 return new UserTokens()
                 {
                     JwtTokens = newJwtToken,
-                    RefreshTokens = newRefreshToken,
+                   
                 };
-            return null;
+
+            }
+            else
+            {
+                return null;
+            }
+                
+            
         }
 
         public async Task<bool> EmailExsistsCheck(string email)
         {
-            if (!email.IsNullOrEmpty())
+                if (!email.IsNullOrEmpty())
+                {
+                    var ismail = await _iDLLogin.EmailExists(email);
+                    return ismail ? true : false;
+                }
+                else
+                {
+                    return true;
+                }
+        }
+
+        public async Task<string> getRefreshToken(string jwt)
+        {
+            if (!jwt.IsNullOrEmpty())
             {
-                var ismail = await _iDLLogin.EmailExists(email);
-                return ismail ? true : false;
+                var userProfile = new User();
+                var principal = GetPrincipleFromExpiredToken(jwt);
+                var userClaims = principal.Claims.FirstOrDefault(c => c.Type == "Email");
+                userProfile.Email = userClaims.Value;
+                var user = await _iDLLogin.GetUser(userProfile);
+                return user.RefreshToken is not null ? user.RefreshToken : null;
             }
             else
             {
-                return true;
+                return null;
             }
         }
 

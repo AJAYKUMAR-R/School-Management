@@ -13,7 +13,7 @@ namespace DatabaseLayer.DatabaseAbstraction
         public Task<bool> RegisterUser(UserProfile student);
         public Task<UserProfile> GetUser(User student);
         Task<bool> SearchRefreshToken(string refreshToken);
-        Task<bool> CreateRefreshToken(string refreshToken, DateTime refreshExpireTime, string email);
+        Task<bool> CreateRefreshToken(string refreshToken, DateTime? refreshExpireTime, string email);
         Task<bool> EmailExists( string email);
     }
 }
