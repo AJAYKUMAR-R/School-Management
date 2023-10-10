@@ -67,11 +67,12 @@ namespace DatabaseLayer.DatabaseLogic
             }
         }
 
-        public async Task<bool> CreateRefreshToken(string refreshToken,DateTime? refreshExpireTime,string email)
+        public async Task<bool> CreateRefreshToken(string refreshToken,string email, DateTime? refreshExpireTime = null)
         {
             SqlParameter[] sqlParameter = new SqlParameter[]{
                 new SqlParameter ("@refershToken",System.Data.SqlDbType.VarChar,255) { Value = refreshToken},
-                new SqlParameter ("@refreshTokenExpireDate",System.Data.SqlDbType.DateTime) { Value = refreshExpireTime},
+                new SqlParameter ("@refreshTokenExpireDate",System.Data.SqlDbType.DateTime)
+                { Value = refreshExpireTime is null ?   DBNull.Value  :refreshExpireTime},
                 new SqlParameter ("@email",System.Data.SqlDbType.VarChar,255){ Value = email }
             };
 

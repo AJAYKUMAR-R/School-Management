@@ -39,14 +39,30 @@ namespace BusinessLayer.BL_layer
                 {
                     string refreshToken = await this.CreateRefreshToken();
                     string jwtToken = this.CreateJwTtoken(st);
-                    var isAdded = await _iDLLogin.CreateRefreshToken(refreshToken, DateTime.Now.AddSeconds(180),user.Email);
-                    if(isAdded)
-                        return new UserTokens()
-                        {
-                            RefreshTokens = refreshToken,
-                            JwtTokens = jwtToken
-                        };
-                    return null;
+                    var userDetails = await _iDLLogin.GetUser(user);
+                    if (userDetails.RefreshExpireTime < DateTime.Now)
+                    {
+                        var isAdded = await _iDLLogin.CreateRefreshToken(refreshToken,user.Email,DateTime.Now.AddMinutes(40));
+                        if (isAdded)
+                            return new UserTokens()
+                            {
+                                RefreshTokens = refreshToken,
+                                JwtTokens = jwtToken
+                            };
+                        return null;
+                    }
+                    else
+                    {
+                        var isAdded = await _iDLLogin.CreateRefreshToken(refreshToken, user.Email);
+                        if (isAdded)
+                            return new UserTokens()
+                            {
+                                RefreshTokens = refreshToken,
+                                JwtTokens = jwtToken
+                            };
+                        return null;
+                    }
+                   
                 }
                 else
                 {
@@ -98,7 +114,7 @@ namespace BusinessLayer.BL_layer
         {
             List<Claim> claims = new List<Claim>
             {
-                new Claim("name", user.StudentName),
+                new Claim("Name", user.StudentName),
                 new Claim("Role", user.Roles),
                 new Claim("Email", user.Email)
             };
@@ -202,7 +218,7 @@ namespace BusinessLayer.BL_layer
             {
                 var newJwtToken = this.CreateJwTtoken(user);
                 var newRefreshToken = await CreateRefreshToken();
-                var isAdded = await _iDLLogin.CreateRefreshToken(newRefreshToken,null,userProfile.Email);
+                var isAdded = await _iDLLogin.CreateRefreshToken(newRefreshToken,userProfile.Email);
                 return new UserTokens()
                 {
                     JwtTokens = newJwtToken,
