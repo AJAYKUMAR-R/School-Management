@@ -10,5 +10,6 @@ namespace BusinessLayer.RespositoryLayer
     public interface IBLFee
     {
         public Task<GetFee> CheckFeeStatus(int studentId);
+        Task<UserProfile> GetUserProfile(string email);
     }
 }

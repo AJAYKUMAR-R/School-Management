@@ -14,16 +14,20 @@ namespace CRUD.Controllers
     public class StudentController : ControllerBase
     {
         private readonly IBLFee _bl;
-        public StudentController(IBLFee _bl)
+        private readonly IAuthenticationService _authorize;
+        public StudentController(IBLFee _bl,IAuthenticationService _authorize)
         {
             this._bl = _bl;
+            this._authorize = _authorize;   
         }
 
         // GET api/<StudentController>/5
-        [HttpGet("{studentId}")]
-        public async Task<Responses> FeeStatus(int studentId)
+        [HttpGet("{email}")]
+        public async Task<Responses> FeeStatus(string email)
         {
-            if(studentId != 0)
+            var StudentProfile = await _bl.GetUserProfile(email);
+            int studentId = StudentProfile is not null? StudentProfile.StudentId : 0;
+            if (studentId != 0)
             {
                 var studentFee = await _bl.CheckFeeStatus(studentId);
                 if(studentFee is not null)
@@ -40,6 +44,7 @@ namespace CRUD.Controllers
                 return StatusHandler.ProcessHttpStatusCode(null, "Invalid Data", 400);
             }
         }
+
 
         
        

@@ -10,8 +10,8 @@ namespace DatabaseLayer.Models
     [Keyless]
     public class GetFee
     {
-
-        public int FeeId { get; set; }
+      
+      public int FeeId { get; set; }
 
         public decimal? ExamFee { get; set; }
 
