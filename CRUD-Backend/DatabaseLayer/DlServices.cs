@@ -26,6 +26,8 @@ namespace DatabaseLayer
 
             services.AddTransient<IDLLogin, DLLogin>();
 
+            services.AddTransient<IDLFeeLogic, DLFeeLogic>();
+
             return services;
         }
     }

@@ -30,6 +30,9 @@ namespace BusinessLayer
             //injecting Auth services
             services.AddTransient<IAuthenticationService, AuthenticationService>();
 
+            //injecting Auth services
+            services.AddTransient<IBLFee, BlFee>();
+
 
             return services;
         }
