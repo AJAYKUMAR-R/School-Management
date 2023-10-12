@@ -45,8 +45,28 @@ namespace CRUD.Controllers
             }
         }
 
+        [HttpGet("GetProfile/{email}")]
+        public async Task<Responses> GetProfile(string email)
+        {
+            var StudentProfile = await _bl.GetUserProfile(email);
+            if (StudentProfile is not null)
+            {
+                Profile profile = new Profile();
+                profile.StudentName = StudentProfile.StudentName;
+                profile.Email = StudentProfile.Email;
+                profile.StudentGuid = StudentProfile.StudentGuid;
+                profile.Roles = StudentProfile.Roles;
+                profile.Country = StudentProfile.Country;
+                profile.Pincode = StudentProfile.Pincode;
+                return StatusHandler.ProcessHttpStatusCode(profile, "Data Fetched succesfully", 200);
+            }
+            else
+            {
+                return StatusHandler.ProcessHttpStatusCode(null, "Record not Found", 404);
+            }
+        }
 
-        
-       
+
+
     }
 }
