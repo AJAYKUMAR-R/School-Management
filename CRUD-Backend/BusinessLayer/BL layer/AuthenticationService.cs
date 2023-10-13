@@ -42,7 +42,7 @@ namespace BusinessLayer.BL_layer
                     string refreshToken = await this.CreateRefreshToken();
                     string jwtToken = this.CreateJwTtoken(st);
                     var userDetails = await _iDLLogin.GetUser(user);
-                    if (userDetails.RefreshExpireTime < DateTime.Now)
+                    if (userDetails.RefreshExpireTime < DateTime.Now || userDetails.RefreshExpireTime is null)
                     {
                         var isAdded = await _iDLLogin.CreateRefreshToken(refreshToken,user.Email,DateTime.Now.AddMinutes(40));
                         if (isAdded)
