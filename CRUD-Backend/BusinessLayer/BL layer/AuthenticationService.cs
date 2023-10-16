@@ -87,9 +87,9 @@ namespace BusinessLayer.BL_layer
                 UserProfile studentProfile = new UserProfile();
                 studentProfile.Country = user.Country;
                 studentProfile.Roles = user.Roles;
-                studentProfile.Email = user.Email;
+                studentProfile.UserMail = user.Email;
                 studentProfile.Pincode = user.Pincode;
-                studentProfile.StudentName = user.StudentName;
+                studentProfile.UserName = user.StudentName;
                 //Hasing the password
                 this.CreatePasswordHash(user.Password, out byte[] passwordHash, out byte[] passwordSalt);
                 studentProfile.PasswordHash = passwordHash;
@@ -116,9 +116,9 @@ namespace BusinessLayer.BL_layer
         {
             List<Claim> claims = new List<Claim>
             {
-                new Claim("Name", user.StudentName),
+                new Claim("Name", user.UserName),
                 new Claim("Role", user.Roles),
-                new Claim("Email", user.Email)
+                new Claim("Email", user.UserMail)
             };
 
             var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(

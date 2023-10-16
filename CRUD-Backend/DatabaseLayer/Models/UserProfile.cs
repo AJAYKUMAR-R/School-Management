@@ -5,13 +5,13 @@ namespace DatabaseLayer.Models;
 
 public partial class UserProfile
 {
-    public int StudentId { get; set; }
+    public int UserId { get; set; }
 
-    public Guid? StudentGuid { get; set; }
+    public Guid? UserGuid { get; set; }
 
-    public string? StudentName { get; set; }
+    public string? UserName { get; set; }
 
-    public string Email { get; set; } = null!;
+    public string UserMail { get; set; } = null!;
 
     public byte[]? PasswordSalt { get; set; }
 

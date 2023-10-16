@@ -26,7 +26,7 @@ namespace CRUD.Controllers
         public async Task<Responses> FeeStatus(string email)
         {
             var StudentProfile = await _bl.GetUserProfile(email);
-            int studentId = StudentProfile is not null? StudentProfile.StudentId : 0;
+            int studentId = StudentProfile is not null? StudentProfile.UserId : 0;
             if (studentId != 0)
             {
                 var studentFee = await _bl.CheckFeeStatus(studentId);
@@ -52,9 +52,9 @@ namespace CRUD.Controllers
             if (StudentProfile is not null)
             {
                 Profile profile = new Profile();
-                profile.StudentName = StudentProfile.StudentName;
-                profile.Email = StudentProfile.Email;
-                profile.StudentGuid = StudentProfile.StudentGuid;
+                profile.StudentName = StudentProfile.UserName;
+                profile.Email = StudentProfile.UserMail;
+                profile.StudentGuid = StudentProfile.UserGuid;
                 profile.Roles = StudentProfile.Roles;
                 profile.Country = StudentProfile.Country;
                 profile.Pincode = StudentProfile.Pincode;

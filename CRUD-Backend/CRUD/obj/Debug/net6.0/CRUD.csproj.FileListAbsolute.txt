@@ -170,6 +170,13 @@ D:\angularproject\Services\New\Angular_.NET_project\CRUD-Backend\CRUD\obj\Debug\
 D:\angularproject\Services\New\Angular_.NET_project\CRUD-Backend\CRUD\obj\Debug\net6.0\CRUD.pdb
 D:\angularproject\Services\New\Angular_.NET_project\CRUD-Backend\CRUD\obj\Debug\net6.0\CRUD.genruntimeconfig.cache
 D:\angularproject\Services\New\Angular_.NET_project\CRUD-Backend\CRUD\obj\Debug\net6.0\ref\CRUD.dll
+C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\obj\Debug\net6.0\CRUD.csproj.AssemblyReference.cache
+C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\obj\Debug\net6.0\CRUD.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\obj\Debug\net6.0\CRUD.AssemblyInfoInputs.cache
+C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\obj\Debug\net6.0\CRUD.AssemblyInfo.cs
+C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\obj\Debug\net6.0\CRUD.csproj.CoreCompileInputs.cache
+C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\obj\Debug\net6.0\CRUD.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\obj\Debug\net6.0\CRUD.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\bin\Debug\net6.0\appsettings.Development.json
 C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\bin\Debug\net6.0\appsettings.json
 C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\bin\Debug\net6.0\CRUD.exe
@@ -242,13 +249,6 @@ C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\bin\Debug\
 C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\bin\Debug\net6.0\BusinessLayer.pdb
 C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\bin\Debug\net6.0\CrudValidation.pdb
 C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\bin\Debug\net6.0\DatabaseLayer.pdb
-C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\obj\Debug\net6.0\CRUD.csproj.AssemblyReference.cache
-C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\obj\Debug\net6.0\CRUD.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\obj\Debug\net6.0\CRUD.AssemblyInfoInputs.cache
-C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\obj\Debug\net6.0\CRUD.AssemblyInfo.cs
-C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\obj\Debug\net6.0\CRUD.csproj.CoreCompileInputs.cache
-C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\obj\Debug\net6.0\CRUD.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\obj\Debug\net6.0\CRUD.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\obj\Debug\net6.0\staticwebassets\msbuild.CRUD.Microsoft.AspNetCore.StaticWebAssets.props
 C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\obj\Debug\net6.0\staticwebassets\msbuild.build.CRUD.props
 C:\Users\ajaykumar.r\source\repos\School-Management\CRUD-Backend\CRUD\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.CRUD.props

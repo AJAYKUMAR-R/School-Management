@@ -25,8 +25,8 @@ namespace DatabaseLayer.DatabaseLogic
         public async Task<bool> RegisterUser(UserProfile student)
         {
             SqlParameter[] sqlParameter = new SqlParameter[]{
-                new SqlParameter ("@studentName",student.StudentName),
-                new SqlParameter ("@email",student.Email),
+                new SqlParameter ("@userName",student.UserName),
+                new SqlParameter ("@userMail",student.UserMail),
                 new SqlParameter ("@passwordSalt",student.PasswordSalt),
                 new SqlParameter ("@passwordHash",student.PasswordHash),
                 new SqlParameter ("@Pincode",student.Pincode),
@@ -36,7 +36,7 @@ namespace DatabaseLayer.DatabaseLogic
 
             try
             {
-                await _dbcontext.Database.ExecuteSqlRawAsync("EXEC [DBO].[ADDRECORDINTOSTUDENTPROFILE] @studentName,@email,@passwordSalt,@passwordHash,@Pincode,@Country,@Roles", sqlParameter);
+                await _dbcontext.Database.ExecuteSqlRawAsync("EXEC [DBO].[ADDRECORDINTOSTUDENTPROFILE] @userName,@userMail,@passwordSalt,@passwordHash,@Pincode,@Country,@Roles", sqlParameter);
                 return true;
             }
             catch
