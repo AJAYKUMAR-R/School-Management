@@ -27,8 +27,8 @@ namespace CRUD.Filters
                 return;
             }
 
-            // User is not authorized, return a 403 Forbidden response
-            context.Result = new StatusCodeResult(403); // You can customize the response as needed
+            // User is not authorized, return a 401
+            context.Result = new StatusCodeResult(401); // You can customize the response as needed
         }
     }
 

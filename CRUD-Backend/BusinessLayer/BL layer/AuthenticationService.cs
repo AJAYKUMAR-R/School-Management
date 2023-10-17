@@ -129,7 +129,8 @@ namespace BusinessLayer.BL_layer
             var token = new JwtSecurityToken(
                 claims: claims,
                 expires: DateTime.Now.AddSeconds(30),
-                signingCredentials: creds);
+                signingCredentials: creds
+                );
 
             var jwt = new JwtSecurityTokenHandler().WriteToken(token);
 
@@ -194,13 +195,13 @@ namespace BusinessLayer.BL_layer
                 ValidateLifetime = true,
 
             };
+
             var tokenHandler = new JwtSecurityTokenHandler();
             SecurityToken securityToken;
             //Return the Claims principle
             var principal = tokenHandler.ValidateToken(token, tokenValidationParameters, out securityToken);
             //convert Security Token to Orginal Token
             var jwtSecurityToken = securityToken as JwtSecurityToken;
-
             if (jwtSecurityToken == null)
                //|| !jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha512, StringComparison.InvariantCultureIgnoreCase)
                 throw new SecurityTokenException("This is Invalid Token");
@@ -214,6 +215,7 @@ namespace BusinessLayer.BL_layer
             var principal = GetPrincipleFromExpiredToken(oldJwttoken);
             var userClaims = principal.Claims.FirstOrDefault(c => c.Type == "Email");
             userProfile.Email = userClaims.Value;
+            //hiting the server 
             var user = await _iDLLogin.GetUser(userProfile);
             //comparing with DB data
             if (user is not null && user.RefreshToken.Equals(user.RefreshToken) && (user.RefreshExpireTime > DateTime.Now))
@@ -224,16 +226,12 @@ namespace BusinessLayer.BL_layer
                 return new UserTokens()
                 {
                     JwtTokens = newJwtToken,
-                   
                 };
-
             }
             else
             {
                 return null;
             }
-                
-            
         }
 
         public async Task<bool> EmailExsistsCheck(string email)

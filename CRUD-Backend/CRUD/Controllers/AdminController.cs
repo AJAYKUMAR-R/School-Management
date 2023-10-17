@@ -13,7 +13,7 @@ namespace CRUD.Controllers
     [Route("CRUD/[controller]")]
     [ApiController]
     [Authorize]
-    //[CustomAuthorize("User")]
+    [CustomAuthorize("Admin")]
     public class AdminController : ControllerBase
     {
         private readonly IBlSqlLogic bl;

@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.RespositoryLayer;
+using CRUD.Filters;
 using CRUD.RespositoryLayer;
 using CRUD.Utils;
 using DatabaseLayer.DatabaseLogic.Models;
@@ -11,6 +12,7 @@ namespace CRUD.Controllers
 {
     [Route("CRUD/[controller]")]
     [ApiController]
+    [CustomAuthorize("Student")]
     public class StudentController : ControllerBase
     {
         private readonly IBLFee _bl;
