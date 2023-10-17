@@ -11,5 +11,6 @@ namespace BusinessLayer.RespositoryLayer
     {
         public Task<GetFee> CheckFeeStatus(int studentId);
         Task<UserProfile> GetUserProfile(string email);
+        Task<byte[]> GeneratePDF(int id);
     }
 }

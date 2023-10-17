@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using QuestPDF.Infrastructure;
 using System.Text;
 
 namespace CRUD
@@ -30,6 +31,9 @@ namespace CRUD
 
             // Add services to the container.
             builder.Services.AddControllers();
+
+            QuestPDF.Settings.License = LicenseType.Community;
+
 
             //Registering DI db Context
             builder.Services.AddTransient<CrudContext>();

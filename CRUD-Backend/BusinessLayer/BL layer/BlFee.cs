@@ -1,8 +1,10 @@
-﻿using BusinessLayer.RespositoryLayer;
+﻿using BusinessLayer.PDF;
+using BusinessLayer.RespositoryLayer;
 using DatabaseLayer.DatabaseAbstraction;
 using DatabaseLayer.DatabaseLogic;
 using DatabaseLayer.DTO;
 using DatabaseLayer.Models;
+using QuestPDF.Fluent;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,6 +36,13 @@ namespace BusinessLayer.BL_layer
             users.Email = email;
             var user = await _auth.GetUser(users);
             return user is not null ? user : null;
+        }
+
+        public async Task<byte[]> GeneratePDF(int id)
+        {
+            var studentFee = await _feeLogic.FeeStatus(id);
+            FeePDF pDF = new FeePDF(studentFee);
+            return  pDF.GeneratePdf();
         }
     }
 }

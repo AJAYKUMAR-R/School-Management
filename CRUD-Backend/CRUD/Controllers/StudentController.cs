@@ -12,7 +12,7 @@ namespace CRUD.Controllers
 {
     [Route("CRUD/[controller]")]
     [ApiController]
-    [CustomAuthorize("Student")]
+    //[CustomAuthorize("Student")]
     public class StudentController : ControllerBase
     {
         private readonly IBLFee _bl;
@@ -65,6 +65,23 @@ namespace CRUD.Controllers
             else
             {
                 return StatusHandler.ProcessHttpStatusCode(null, "Record not Found", 404);
+            }
+        }
+
+        [HttpGet("GetPdf/{email}")]
+        public async Task<IActionResult> GetPdf(string email)
+        {
+            var StudentProfile = await _bl.GetUserProfile(email);
+            if (StudentProfile is not null)
+            {
+                var pdf = await _bl.GeneratePDF(StudentProfile.UserId);
+                Response.Headers.Add("Content-Type", "application/pdf");
+                Response.Headers.Add("Content-Disposition", "inline; filename=Fee.pdf");
+                return File(pdf, "application/pdf");
+            }
+            else
+            {
+                return NotFound();
             }
         }
 
